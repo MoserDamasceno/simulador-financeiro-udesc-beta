@@ -52,7 +52,7 @@ class Cotation extends MY_Controller {
 		}
 		
 		foreach ($stocks as $stock) {		
-			if (!array_key_exists($stock->id_stock, $c)) { 
+			if (array_key_exists($stock->id_stock, $c)) { 
 				$symbols[$stock->id_stock] = $stock;
 			}
 		}
@@ -68,7 +68,6 @@ class Cotation extends MY_Controller {
 				'date_time' => date('Y-m-d H:i:s')
 			];
 		}
-
 
 		$this->cotation_model->save($data);
 	}
