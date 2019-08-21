@@ -28,7 +28,7 @@ class Cotation extends MY_Controller {
 	{
 		$this->load->model('stock_model');
 		$stocks = $this->stock_model->get_all();
-		$count = count($stocks);
+		// $count = count($stocks);
 
 		foreach ($stocks as $s => $stock) {
 			$this->update($stock->ticker);
@@ -57,7 +57,6 @@ class Cotation extends MY_Controller {
 		}
 
 		$s = current($symbols);
-		pre($s, false);
 
 		$cot = $this->cotation_model->get_global_quote($s->ticker);
 		if ($cot && isset($cot['08. previous close'])) {
@@ -71,7 +70,6 @@ class Cotation extends MY_Controller {
 
 
 		$this->cotation_model->save($data);
-		pre($data);
 	}
 
 	public function update($ticker) {
@@ -91,10 +89,9 @@ class Cotation extends MY_Controller {
 			}
 
 			$this->cotation_model->save($data);
-
-			pre($data);
+			echo "Ação atualizada " . $ticker . "<br/>";
 		} else {
-			echo 'Ação não encontrada';
+			echo 'Ação não encontrada <br/>';
 		}
 	}
 
