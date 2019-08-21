@@ -5,7 +5,6 @@ class cotation_model extends CI_Model {
 	protected $table_cotation = 'cotations';
 	protected $table_stock = 'stocks';
 
-	protected $site_url =  "https://www.tutorialrepublic.com/";
 	protected $url_api = "https://www.alphavantage.co/";
 	protected $param = "query";
 	protected $global_quote = "GLOBAL_QUOTE";
@@ -19,8 +18,8 @@ class cotation_model extends CI_Model {
 
 	public function get_global_quote($symbol = 'BBAS3') {
 		$url = $this->url_api.$this->param.'?function='.$this->global_quote.'&symbol='.$symbol.$this->bolsa.'&apikey='.$this->api_key;
-
 		$ch = curl_init();
+
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 60);
@@ -32,7 +31,11 @@ class cotation_model extends CI_Model {
 		} else { 
 			$transaction = json_decode($data, TRUE);
 			curl_close($ch);
-			return $transaction['Global Quote'];
+			if (!isset($transaction['Note'])) {
+				return $transaction['Global Quote'];
+			} else {
+				return array('error' => 'Limite de requests atingido');
+			}
 		}
 	}
 
@@ -67,9 +70,22 @@ class cotation_model extends CI_Model {
 	public function get_cotation_by_stock($stock)
 	{
 		return $this->db
-		->where('stock_id',$id)
+		->from($this->table_cotation . ' as c')
+		->where('stocks.id_stock',$stock)
+		->join('stocks', 'stocks.id_stock = stock_id')
+		->limit(1)
+		->order_by('date_time', 'DESC')
+		->get()
+		->row();
+	}
+
+	public function get_by_stock_and_id($id, $stock)
+	{
+		return $this->db
+		->where('id_cotation',$id)
+		->where('stock_id',$stock)
 		->get($this->table_cotation)
-		->result();
+		->row();
 	}
 
 	public function get_cotation_by_ticker($ticker) {
@@ -80,7 +96,7 @@ class cotation_model extends CI_Model {
 		->limit(1)
 		->order_by('date_time', 'DESC')
 		->get()
-		->result();
+		->row();
 	}
 
 	public function delete($id)

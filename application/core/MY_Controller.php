@@ -17,8 +17,25 @@ class MY_Controller extends CI_Controller
                 'index',
 			],
 			'cotation' => [
-				'import',
-			],
+                'import',
+            ],
+            'wallet' => [
+                'index',
+                'ranking',
+            ],
+            'transaction' => [
+                'index',
+            ],
+            'ranking' => [
+                'index',
+            ],
+            'stock' => [
+                'buy',
+                'save_buy',
+                'sell',
+                'save_sell',
+            ],
+
         ],
     ];
 

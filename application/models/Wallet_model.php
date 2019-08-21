@@ -2,9 +2,8 @@
 
 class Wallet_model extends CI_Model {
 
-	protected $table_transaction = 'transactions';
+	protected $table_wallet = 'wallet';
 	protected $table_stock = 'stocks';
-	protected $table_cotation = 'cotations';
 	protected $initial_value = 1000000000;
 
 	function __construct() {
@@ -12,84 +11,90 @@ class Wallet_model extends CI_Model {
 	}
 
 	public function save($data) {
-		if (!$data['id_transaction']) {
-			$res = $this->db->insert($this->table_transaction, $data);
-			return ($res) ? $this->db->insert_id('id_transaction') : false;
+		if (!$data['id_wallet']) {
+			$res = $this->db->insert($this->table_wallet, $data);
+			return ($res) ? $this->db->insert_id('id_wallet') : false;
 		} else {
-			$this->db->where('id_transaction', $data['id_transaction']);
-			return $this->db->update($this->table_transaction, $data);
+			$this->db->where('id_wallet', $data['id_wallet']);
+			return $this->db->update($this->table_wallet, $data);
 		}
 	}
 
 	public function get($id)
 	{
 		return $this->db
-		->where('u.id_transaction',$id)
-		->get($this->table_transaction . ' as u')
+		->where('u.id_wallet',$id)
+		->get($this->table_wallet . ' as u')
 		->row();
 	}
 
-	public function get_total_by_user($user)
+	public function get_stock_by_user($stock, $user)
 	{
 		$query =  $this->db
-		->from($this->table_transaction . ' as t')
+		->from($this->table_wallet . ' as w')
 		->join('stocks', 'stocks.id_stock = stock_id', 'LEFT')
-		->join('cotations', 'cotations.id_cotation = cotation_id', 'LEFT')
-		->where('t.user_id',$user)
+		->where('user_id',$user)
+		->where('stock_id',$stock)
+		->get()
+		->row();
+
+		return $query;
+	}
+
+	public function get_by_user($user)
+	{
+		$query =  $this->db
+		->from($this->table_wallet . ' as w')
+		->join('stocks', 'stocks.id_stock = stock_id', 'LEFT')
+		->where('user_id',$user)
 		->get()
 		->result();
 
 		return $query;
 	}
 
-	public function get_transaction_by_stock($stock)
+	public function check_quantity($stock, $user, $quantity)
+	{
+		$query =  $this->db
+		->from($this->table_wallet . ' as w')
+		->join('stocks', 'stocks.id_stock = stock_id', 'LEFT')
+		->where('user_id',$user)
+		->where('stock_id',$stock)
+		->get()
+		->row();
+
+		if ($query && $query->quantity >= $quantity) {
+			return $query;
+		} else {
+			return false;
+		}
+	}
+
+	public function get_wallet_by_stock($stock)
 	{
 		return $this->db
 		->where('stock_id',$id)
-		->get($this->table_transaction)
+		->get($this->table_wallet)
 		->result();
 	}
 
 	public function delete($id)
 	{
 		if ($id) {
-			$this->db->where('id_transaction', $id);
-			return $this->db->delete($this->table_transaction);
+			$this->db->where('id_wallet', $id);
+			return $this->db->delete($this->table_wallet);
 		}
 	}
 
 	public function get_all() {
 		return $this->db
-		->from($this->table_transaction . ' as t')
+		->from($this->table_wallet . ' as t')
 		->join('stocks', 'stocks.id_stock = stock_id', 'LEFT')
 		->join('cotations', 'cotations.id_cotation = cotation_id', 'LEFT')
 		->get()
 		->result();
 	}
 
-	public function get_average_value($transactions)
-	{
-		$tr = $buy = $sell = array();
-		foreach ($transactions as $t => $transaction) {
-			$buy[$transaction->stock_id] = $sell[$transaction->stock_id] = array('value' => 0, 'count' => 0);
-			if ($transaction->type == 'buy') {
-				$buy[$transaction->stock_id]['total_value'] =+ $transaction->quantity * round($transaction->value);
-				$buy[$transaction->stock_id]['count']++;
-			} else {
-				$sell[$transaction->stock_id]['total_value'] =+ $transaction->quantity * round($transaction->value);
-				$sell[$transaction->stock_id]['average_value'] =+ $transaction->quantity * round($transaction->value);
-				$sell[$transaction->stock_id]['count']++;
-			}
-
-			$tr[$transaction->stock_id]['average_value'] =+ $buy[$transaction->stock_id]['total_value'] / $buy[$transaction->stock_id]['count'];
-
-		}
-		// 	pre($tr);
-
-		// pre($buy, false);
-		// pre($transactions);
-		return $transactions;
-	}
 
 }
 

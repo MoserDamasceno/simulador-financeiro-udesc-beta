@@ -1,4 +1,4 @@
-<?php if ($this->session->userdata('user')->role_id != 2): ?>
+<?php //if ($this->session->userdata('user')->role_id != 2): ?>
 	<!--Leftbar Start Here-->
 	<aside class="leftbar material-leftbar">
 		<div class="left-aside-container">
@@ -30,15 +30,18 @@
 			<ul class="list-accordion">
 				<li class="list-title">Menu</li>
 				<li>
-					<a href="<?php echo base_url('dashboard') ?>"><i class="zmdi zmdi-search"></i><span class="list-label">Stocks</span></a>
+					<a href="<?php echo base_url('dashboard') ?>"><i class="zmdi zmdi-search"></i><span class="list-label">Ações</span></a>
 				</li>
 				<li>
-					<a href="<?php echo base_url('wallet') ?>"><i class="zmdi zmdi-store"></i><span class="list-label">Wallet</span></a>
+					<a href="<?php echo base_url('wallet') ?>"><i class="zmdi zmdi-store"></i><span class="list-label">Carteira</span></a>
 				</li>
-				<?php if ($this->session->userdata('user')->role_id == 1): ?>
+				<li>
+					<a href="<?php echo base_url('transaction') ?>"><i class="zmdi zmdi-group-work"></i><span class="list-label">Transações</span></a>
+				</li>
 					<li>
-						<a href="<?php echo base_url('ranking') ?>"><i class="zmdi zmdi-ticket-star"></i><span class="list-label">Ranking</span></a>
+						<a href="<?php echo base_url('wallet/ranking') ?>"><i class="zmdi zmdi-ticket-star"></i><span class="list-label">Ranking</span></a>
 					</li>
+				<?php if ($this->session->userdata('user')->role_id == 1): ?>
 					<!-- 
 					<li>
 						<a href="<?php echo base_url('classes') ?>"><i class="zmdi zmdi-group-work"></i><span class="list-label">Classes</span></a>
@@ -61,4 +64,4 @@
 		</div>
 	</aside>
 	<!--Leftbar End Here-->
-<?php endif; ?>
+<?php //endif; ?>

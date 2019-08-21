@@ -25,22 +25,11 @@ class Dashboard extends MY_Controller {
 		$stocks = $this->stock_model->get_all();
 		$cotations = array();
 		foreach ($stocks as $stock) {
-			$cotations[] = $this->cotation_model->get_cotation_by_ticker($stock->ticker)[0];
+			$cotations[] = $this->cotation_model->get_cotation_by_ticker($stock->ticker);
 		}
-
-		$w = $this->wallet_model->get_total_by_user($user->id_user);
-		if ($w) {
-			$wallet = $this->wallet_model->get_average_value($w);
-			// $wallet[$stock->id_stock] = $w;
-		}
-		// pre($w, false);
-
-		// pre($wallet);
-
-		$this->data['wallet'] = $wallet;
+		
 		$this->data['stocks'] = $stocks;
 		$this->data['cotations'] = $cotations;
-		// pre($this->data['wallet']);
 		
 		renderizarPagina($paginas, $this->data);
 	}

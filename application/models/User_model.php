@@ -32,8 +32,9 @@ class User_model extends CI_Model {
 	}
 
 	public function save($data) {
-		if (!$data['id_user']) {
+		if (!isset($data['id_user'])) {
 			$data['created_at'] = date('Y-m-d H:i:s');
+			$data['saldo'] = 1000000;
 			return $this->db->insert($this->table_user, $data);
 		} else {
 			$data['updated_at'] = date('Y-m-d H:i:s');
@@ -68,6 +69,22 @@ class User_model extends CI_Model {
 		->row();
 	}
 
+	public function check_saldo($quantity, $price, $id_user)
+	{
+		$total = doubleval($quantity) * doubleval($price);
+
+		$user =  $this->db
+		->where('id_user',$id_user)
+		->get($this->table_user)
+		->row();
+
+		if ($user) {
+			return ($total <= $user->saldo)? true : false;
+		}
+
+		return false;
+	}
+
 	public function get_all() {
 		return $this->db
 		->where('deleted_at', NULL)
@@ -89,6 +106,46 @@ class User_model extends CI_Model {
 			->get_where($this->table_user, array('email' => $email, 'password' => md5($pass), 'deleted_at' => null,));
 		
 		return $query->row();
+	}
+
+	public function sell_stock($quantity, $price, $id_user)
+	{
+		$saldo = doubleval($quantity) * doubleval($price);
+
+		$this->db->set('saldo', 'saldo+'.$saldo, FALSE);
+		$this->db->where('id_user', $id_user);
+		$this->db->update($this->table_user);
+
+		$user = $this->db->select()
+		->where('id_user', $id_user)
+		->get('users')
+		->row();
+
+		$this->session->unset_userdata('user');
+		if ($user) {
+			$this->session->set_userdata('user', $user);
+		}
+	}
+
+	public function buy_stock($quantity, $price, $id_user)
+	{
+		$saldo = doubleval($quantity) * doubleval($price);
+
+		$this->db->set('saldo', 'saldo-'.$saldo, FALSE);
+		$this->db->where('id_user', $id_user);
+		$this->db->update($this->table_user);
+
+		$user = $this->db->select()
+		->where('id_user', $id_user)
+		->get('users')
+		->row();
+
+		$this->session->unset_userdata('user');
+		if ($user) {
+			$this->session->set_userdata('user', $user);
+		}
+
+
 	}
 
 
