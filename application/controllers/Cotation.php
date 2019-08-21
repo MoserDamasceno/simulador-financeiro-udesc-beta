@@ -30,11 +30,10 @@ class Cotation extends MY_Controller {
 		$stocks = $this->stock_model->get_all();
 		$count = count($stocks);
 
-		for ($i=0; $i < $count; $i++) { 
-			$this->import();
+		foreach ($stocks as $s => $stock) {
+			$this->update($stock->ticker);
 			sleep(13);
 		}
-
 	}
 
 	public function import()
