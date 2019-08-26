@@ -39,9 +39,9 @@
 									<?php foreach ($users as $u): ?>
 										<tr>
 											<td><?php echo $u->name ?></td>
-											<td><?php echo money_format('%i', $u->values['valor_atual']) ?></td>
-											<td><?php echo money_format('%i', $u->values['valor_ativos']) ?></td>
-											<td><?php echo money_format('%i', $u->values['valor_total']) ?></td>
+											<td><?php echo converterMoeda($u->values['valor_atual']) ?></td>
+											<td><?php echo converterMoeda($u->values['valor_ativos']) ?></td>
+											<td><?php echo converterMoeda($u->values['valor_total']) ?></td>
 											<td><?php echo $u->values['variacao'] ?></td>
 										</tr>
 									<?php endforeach ?>
@@ -53,7 +53,7 @@
 									<td></td>
 									<td></td>
 									<td>Total</td>
-									<td><?php echo money_format('%i', $total)  ?></td>
+									<td><?php echo converterMoeda($total)  ?></td>
 									<td></td>
 								</tr>
 							</tfooter>

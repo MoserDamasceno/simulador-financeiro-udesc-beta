@@ -78,7 +78,7 @@ class Cotation extends MY_Controller {
 		$stock = $this->stock_model->get_by_ticker($ticker);
 		if ($stock) {
 			$cot = $this->cotation_model->get_global_quote($ticker);
-			
+
 			if ($cot && isset($cot['08. previous close'])) {
 				$data = [
 					'id_cotation' => null,
@@ -86,10 +86,13 @@ class Cotation extends MY_Controller {
 					'value' => $cot['08. previous close'],
 					'date_time' => date('Y-m-d H:i:s')
 				];
+				$this->cotation_model->save($data);
+				echo "Ação atualizada " . $ticker . "<br/>";
+			} else {
+				pre($cot);
+				echo $cot;
 			}
 
-			$this->cotation_model->save($data);
-			echo "Ação atualizada " . $ticker . "<br/>";
 		} else {
 			echo 'Ação não encontrada <br/>';
 		}

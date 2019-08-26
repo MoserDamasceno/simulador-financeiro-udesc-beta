@@ -16,7 +16,7 @@
 			<div class="widget-wrap">
 				<div class="widget-header block-header margin-bottom-0 clearfix">
 					<h3>Ações</h3>
-					<p>Seu saldo é: <?php echo money_format('%i', round($user->saldo, 2))?></p>
+					<p>Seu saldo é: <?php echo converterMoeda(round($user->saldo, 2))?></p>
 				</div>
 				<div class="widget-container">
 					<div class="widget-content">

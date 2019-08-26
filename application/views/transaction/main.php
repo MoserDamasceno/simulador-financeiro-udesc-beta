@@ -50,8 +50,8 @@
 										<td><?php echo $w->company ?></td>
 										<td><?php echo ($w->type == 'buy') ? 'Compra' : 'Venda' ?></td>
 										<td><?php echo $w->quantity ?></td>
-										<td><?php echo money_format('%i', round($w->value, 2))  ?></td>
-										<td><?php echo money_format('%i', round($w->value, 2) * $w->quantity)  ?></td>
+										<td><?php echo converterMoeda(round($w->value, 2))  ?></td>
+										<td><?php echo converterMoeda(round($w->value, 2) * $w->quantity)  ?></td>
 										<td><?php echo date('d/m/Y H:i', strtotime($w->date_time)) ?></td>
 									</tr>
 								<?php endforeach ?>
@@ -62,13 +62,13 @@
 									<td></td>
 									<td></td>
 									<td><b>Compras:</b></td>
-									<td><?php echo money_format('%i', $compras)  ?></td>
+									<td><?php echo converterMoeda($compras)  ?></td>
 									<td></td>
 									<td><b>Vendas:</b></td>
-									<td><?php echo money_format('%i', $vendas)  ?></td>
+									<td><?php echo converterMoeda($vendas)  ?></td>
 									<?php /*
 									<td><b>Resultado:</b></td>
-																		<td><?php echo money_format('%i', $vendas - $compras)  ?></td>
+																		<td><?php echo converterMoeda($vendas - $compras)  ?></td>
 									*/ ?>
 								</tr>
 							</tfooter>

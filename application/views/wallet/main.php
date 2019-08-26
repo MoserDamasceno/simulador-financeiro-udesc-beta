@@ -16,7 +16,7 @@
 			<div class="widget-wrap">
 				<div class="widget-header block-header margin-bottom-0 clearfix">
 					<h3>Carteira</h3>
-					<p>Seu saldo é: <?php echo money_format('%i', round($user->saldo, 2))?></p>
+					<p>Seu saldo é: <?php echo converterMoeda(round($user->saldo, 2))?></p>
 				</div>
 				<div class="widget-container">
 					
@@ -44,8 +44,8 @@
 											<td><?php echo $w->ticker ?></td>
 											<td><?php echo $w->company ?></td>
 											<td><?php echo $w->quantity ?></td>
-											<td><?php echo money_format('%i', round($w->average_price, 2))  ?></td>
-											<td><?php echo money_format('%i', round($w->value, 2))  ?></td>
+											<td><?php echo converterMoeda(round($w->average_price, 2))  ?></td>
+											<td><?php echo converterMoeda(round($w->value, 2))  ?></td>
 											<td><?php echo $w->date_time  ?></td>
 											<td><a href="/stock/sell/<?php echo $w->ticker ?>" class="button">Vender</a></td>
 										</tr>
@@ -59,7 +59,7 @@
 									<td></td>
 									<td></td>
 									<td>Total</td>
-									<td><?php echo money_format('%i', $total)  ?></td>
+									<td><?php echo converterMoeda($total)  ?></td>
 									<td></td>
 									<td></td>
 								</tr>
@@ -86,10 +86,10 @@
 										$valor_total =  $total + $user->saldo;
 										$variacao = round((($valor_total / $valor_inicial) - 1 ) * 100, 2) ;
 										?>
-									<b>Saldo inicial:</b> <?php echo money_format('%i', $valor_inicial)  ?> <br>
-									<b>Saldo atual:</b> <?php echo money_format('%i', $user->saldo)  ?> <br>
-									<b>Valor em ativos:</b> <?php echo money_format('%i', $total)  ?> <br>
-									<b>Valor total:</b> <?php echo money_format('%i', $valor_total)  ?> <br>
+									<b>Saldo inicial:</b> <?php echo converterMoeda($valor_inicial)  ?> <br>
+									<b>Saldo atual:</b> <?php echo converterMoeda($user->saldo)  ?> <br>
+									<b>Valor em ativos:</b> <?php echo converterMoeda($total)  ?> <br>
+									<b>Valor total:</b> <?php echo converterMoeda($valor_total)  ?> <br>
 									<b>Variação total:</b> <?php echo $variacao . '%' ?>
 								</p>
 		

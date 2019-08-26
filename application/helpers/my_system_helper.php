@@ -267,33 +267,6 @@ function renderizarPagina($pagina, $data = null, $options = array())
 
 }
 
-function getPagseguroCredential()
-{
-	$ci=& get_instance();
-	$config = $ci->config->item('pagseguro');
-	\PagSeguro\Library::initialize();
-	\PagSeguro\Library::cmsVersion()->setName('EBGE')->setRelease('1.0.0');
-	\PagSeguro\Library::moduleVersion()->setName('EBGE')->setRelease('1.0.0');
-	\PagSeguro\Configuration\Configure::setEnvironment($config['env']);
-	\PagSeguro\Configuration\Configure::setAccountCredentials(
-		$config['email'],
-		$config['token']
-	);
-
-	return \PagSeguro\Configuration\Configure::getAccountCredentials();
-}
-
-function getPagseguroUrl($code)
-{
-	$ci=& get_instance();
-	$env = $ci->config->item('pagseguro')['env'];
-
-	if ($env == 'sandbox') {
-		return 'https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=' . $code;
-	}
-	
-	return 'https://pagseguro.uol.com.br/v2/checkout/payment.html?code=' . $code;
-}
 
 function message($type, $message, $auth = false)
 {
@@ -356,7 +329,7 @@ function converterMoeda($valor, $direction = 'interface')
 			if (is_numeric($valor)) {
 				$valor = number_format($valor, 2, ',', '.');
 			}
-			return $valor;
+			return 'R$ ' . $valor;
 		
 		case 'mysql':
 			$valor = str_replace('.', '', $valor);
