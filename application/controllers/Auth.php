@@ -47,10 +47,10 @@ class Auth extends CI_Controller {
 		if ($this->input->post()) {
 			$name = $this->input->post('name');
 			$email = $this->input->post('email');
-			$phone = $this->input->post('phone');
+			$class = $this->input->post('class');
 			$password = $this->input->post('password');
 			// md5($pass)
-			if (! $name || ! $email || ! $password || ! $phone) {
+			if (! $name || ! $email || ! $password || ! $class) {
 				return redirect('auth/register?error=required');
 			}
 		
@@ -66,7 +66,7 @@ class Auth extends CI_Controller {
 				'role_id' => 2,
 				'name' => $name,
 				'email' => $email,
-				'phone' => $phone,
+				'class' => $class,
 				'password' => md5($password),
 			]);
 
