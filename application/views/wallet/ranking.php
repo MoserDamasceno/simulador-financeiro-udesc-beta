@@ -26,6 +26,7 @@
 							<thead>
 								<tr>
 									<th data-field="nome">Nome</th>
+									<th data-field="disciplina">Disciplina</th>
 									<th data-field="saldo_atual">Saldo atual</th>
 									<th data-field="amount">Valor em ativos</th>
 									<th data-field="valot_total">Valor total</th>
@@ -39,6 +40,7 @@
 									<?php foreach ($users as $u): ?>
 										<tr>
 											<td><?php echo $u->name ?></td>
+											<td><?php echo $u->class ?></td>
 											<td><?php echo converterMoeda($u->values['valor_atual']) ?></td>
 											<td><?php echo converterMoeda($u->values['valor_ativos']) ?></td>
 											<td><?php echo converterMoeda($u->values['valor_total']) ?></td>

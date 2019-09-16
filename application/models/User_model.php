@@ -4,6 +4,7 @@ class User_model extends CI_Model {
 
 	protected $table_user = 'users';
 	protected $table_role = 'roles';
+	protected $table_class = 'classes';
 
 	function __construct() {
 		parent::__construct();
@@ -89,6 +90,7 @@ class User_model extends CI_Model {
 		return $this->db
 		->where('deleted_at', NULL)
 		->join($this->table_role . ' as r', 'u.role_id = r.id', 'left')
+		->join($this->table_class . ' as c', 'u.class = c.id_class', 'left')
 		->get($this->table_user . ' as u')
 		->result();
 	}
