@@ -89,7 +89,7 @@ class Cotation extends MY_Controller {
 				$this->cotation_model->save($data);
 				echo "Ação atualizada " . $ticker . "<br/>";
 			} else {
-				pre($cot);
+				// pre($cot);
 				echo $cot;
 			}
 

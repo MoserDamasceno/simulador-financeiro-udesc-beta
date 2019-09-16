@@ -34,7 +34,11 @@
 
 						<div class="unit">
 							<div class="input login-input">
-								<input class="form-control login-frm-input phone_with_ddd-mask" type="text" id="phone" name="phone" placeholder="Telefone">
+								<select class="form-control login-frm-input" name="class" id="class">
+									<option value>Disciplina</option>
+									<option value="1">ESFI 2019/2</option>
+									<option value="2">MEFCA 2019/2</option>
+								</select>
 							</div>
 						</div>
 						<!-- end login -->
