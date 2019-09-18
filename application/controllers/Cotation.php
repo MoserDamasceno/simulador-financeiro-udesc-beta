@@ -24,35 +24,31 @@ class Cotation extends MY_Controller {
 		renderizarPagina($paginas, $this->data);
 	}
 
-	public function get_stocks()
-	{
-		$this->load->model('cotation_model');
-		// $db_stocks = $this->stock_model->get_all();
-		$stocks = [
-			'RLOG3','NEOE3','UNIP6','NEV3'
-		];
+	// public function get_stocks()
+	// {
+	// 	$this->load->model('cotation_model');
+	// 	// $db_stocks = $this->stock_model->get_all();
+	// 	$stocks = [
+	// 		'RLOG3','NEOE3','UNIP6','NEV3'
+	// 	];
 
-		$tem = [];
-		foreach ($stocks as $dbs){
-			$tem[] = $this->cotation_model->search_stock_api($dbs);
-			// sleep(13);
-		}
+	// 	$tem = [];
+	// 	foreach ($stocks as $dbs){
+	// 		$tem[] = $this->cotation_model->search_stock_api($dbs);
+	// 		// sleep(13);
+	// 	}
 
-		pre($tem);
+	// 	pre($tem);
 
-	}
+	// }
 
 	public function update_all()
 	{
 		$this->load->model('stock_model');
-		//$stocks = $this->stock_model->get_all();
-		// $count = count($stocks);
-		$stocks = [
-			'VLID3', 'PTBL3', 'BIDI4', 'FLRP11', 'AMZO34', 'RLOG3', 'NEOE3', 'UNIP6', 'YDUQ3', 'PMAM3'
-		];
+		$stocks = $this->stock_model->get_all();
+		
 		foreach ($stocks as $s => $stock) {
-			//$this->update($stock->ticker);
-			$this->update($stock);
+			$this->update($stock->ticker);
 			sleep(13);
 		}
 	}

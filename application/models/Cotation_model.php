@@ -58,11 +58,11 @@ class cotation_model extends CI_Model {
 			$transaction = json_decode($data, TRUE);
 			curl_close($ch);
 			if (isset($transaction['Note'])) {
-				return 'Limite de requests atingido';
+				return $this->global_quote . ' - '. 'Limite de requests atingido';
 			} else if(isset($transaction['Error Message'])){
-				return $transaction['Error Message'];
+				return $this->global_quote . ' - '. $transaction['Error Message'];
 			} else {
-				return $transaction['Global Quote'];
+				return $this->global_quote . ' - '. $transaction['Global Quote'];
 			}
 		}
 	}
