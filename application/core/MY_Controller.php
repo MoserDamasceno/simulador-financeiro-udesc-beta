@@ -58,8 +58,12 @@ class MY_Controller extends CI_Controller
                 $sum += $w->quantity * $w->average_price;
             }
             $this->user->saldo_ativos = $sum;
-            $this->session->set_userdata('user', $this->user);
+
+        } else {
+            $this->user->saldo_ativos = 0;
         }
+
+        $this->session->set_userdata('user', $this->user);
         
         $this->check();
         setlocale(LC_MONETARY, 'pt_BR');
