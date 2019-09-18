@@ -16,7 +16,6 @@
 			<div class="widget-wrap">
 				<div class="widget-header block-header margin-bottom-0 clearfix">
 					<h3>Carteira</h3>
-					<p>Seu saldo é: <?php echo converterMoeda(round($user->saldo, 2))?></p>
 				</div>
 				<div class="widget-container">
 					

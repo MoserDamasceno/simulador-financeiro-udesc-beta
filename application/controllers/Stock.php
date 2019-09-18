@@ -68,6 +68,11 @@ class Stock extends MY_Controller {
 			$data['stock_id'] = $this->input->post('id_stock');
 			$data['cotation_id'] = $this->input->post('id_cotation');
 			$data['date_time'] = date('Y-m-d H:i:s');
+
+			if ($data['quantity'] <= 0) {
+				message('error', 'Você precisa comprar uma quantidade positiva.');
+				redirect('dashboard');
+			}
 			
 			# OK // Busca o valor da cotação da ação para comprar
 			$this->load->model('cotation_model');
@@ -155,14 +160,15 @@ class Stock extends MY_Controller {
 		$stock = $this->cotation_model->get_cotation_by_ticker($ticker);
 
 		$this->load->model('wallet_model');
-		$user = $this->session->userdata('user');
-		$wallet = $this->wallet_model->get_stock_by_user($stock->stock_id, $user->id_user);
+
+		$wallet = $this->wallet_model->get_stock_by_user($stock->stock_id, $this->user->id_user);
 
 		if ($stock) {
 			adicionarCanonical(base_url() . 'stock');
 
 			$this->data['stock'] = $stock;
 			$this->data['wallet'] = $wallet;
+			$this->data['user'] = $this->user;
 
 			$paginas = array('stock/sell');
 
@@ -189,6 +195,11 @@ class Stock extends MY_Controller {
 			$data['stock_id'] = $this->input->post('id_stock');
 			$data['cotation_id'] = $this->input->post('id_cotation');
 			$data['date_time'] = date('Y-m-d H:i:s');
+
+			if ($data['quantity'] <= 0) {
+				message('error', 'Você precisa vender uma quantidade positiva.');
+				redirect('wallet');
+			}
 
 			
 			# OK // 1 - valida se possui o número de ações a vender

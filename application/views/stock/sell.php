@@ -12,7 +12,7 @@
 						<p>
 							<b>Empresa:</b> <?php echo $stock->company ?> <br/>
 							<b>Ticker:</b> <?php echo $stock->ticker ?> <br/>
-							<b>Preço médio:</b> <?php echo money_format('%i', $wallet->average_price) ?><br/>
+							<b>Preço médio:</b> <?php echo converterMoeda(round($wallet->average_price,2)) ?><br/>
 							<b>Quantidade em carteira:</b> <?php echo $wallet->quantity ?> <br/>
 						</p>
 						<form class="form-horizontal" method="POST" action="<?php echo base_url('stock/save_sell') ?>">
@@ -59,7 +59,7 @@
 						<p>
 							<b>Empresa:</b> <?php echo $stock->company ?> <br/>
 							<b>Ticker:</b> <?php echo $stock->ticker ?> <br/>
-							<b>Cotação:</b> <?php echo money_format('%i', $stock->value) ?><br/>
+							<b>Cotação:</b> <?php echo converterMoeda(round($stock->value,2)) ?><br/>
 							<b>Ultima atualização:</b> <?php echo date('H:i d/m/Y', strtotime($stock->date_time)) ?> <br/>
 						</p>
 					</div>
