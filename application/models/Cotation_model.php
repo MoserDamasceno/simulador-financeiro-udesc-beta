@@ -62,7 +62,7 @@ class cotation_model extends CI_Model {
 			} else if(isset($transaction['Error Message'])){
 				return $this->global_quote . ' - '. $transaction['Error Message'];
 			} else {
-				return $this->global_quote . ' - '. $transaction['Global Quote'];
+				return $transaction['Global Quote'];
 			}
 		}
 	}
