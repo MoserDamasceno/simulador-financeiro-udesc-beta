@@ -19,10 +19,17 @@
 							<input type="hidden" name="id_stock" value="<?php echo $stock->id_stock ?>">
 							<input type="hidden" name="id_cotation" value="<?php echo $stock->id_cotation ?>">
 							<input type="hidden" name="id_wallet" value="<?php echo $wallet->id_wallet ?>">
+							<input type="hidden" id="cotation" value="<?php echo $stock->value ?>">
+							<input type="text" style="display:none" id="total_amount" value="">
 							<div class="form-group">
 								<label class="col-md-12">Quantidade a vender</label>
 								<div class=" col-md-12">
-									<input type="number" name="quantidade" class="form-control" placeholder="Digite a quantidade de ações que deseja vender.">
+									<input type="number" name="quantidade" class="input-quantidade form-control" placeholder="Digite a quantidade de ações que deseja vender.">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-md-12">
+									Valor total da transação: <span id="estimate_value">0</span>
 								</div>
 							</div>
 							<div class="form-group">

@@ -20,14 +20,21 @@ h("input"),watchDataMask:!1,byPassKeys:[9,16,17,18,36,37,38,39,40,91],translatio
 
 
 jQuery(document).ready(function($) {
-	$('.cnpj-mask').mask('99.999.999/9999-99');
-
-	// ClassicEditor
- //  .create( document.querySelector( '.text_editor' ) )
- //  .catch( error => {
- //      console.error( error );
- //  } );
-
-  $('.text_editor').summernote();
+	console.log('Changed1!');
+	
+	$('.input-quantidade').keyup(function(){
+		$('#total_amount').mask("#.##0,00", {reverse: true});
+		var quantidade = $(this).val();
+		var cotation = $('#cotation').val();
+		var total = (quantidade * cotation).toFixed(2);
+		$('#total_amount').val(total);
+		total = $('#total_amount').masked(total);
+		
+		$('#estimate_value').html('R$ ' + total);
+	});
 
 });
+
+function N(num, places) 
+  { return +(Math.round(num + "e+" + places)  + "e-" + places);
+  }

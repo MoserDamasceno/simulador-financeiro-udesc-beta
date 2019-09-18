@@ -47,6 +47,7 @@
 											<td><?php echo converterMoeda(round($w->average_price, 2))  ?></td>
 											<td><?php echo converterMoeda(round($w->value, 2))  ?></td>
 											<td><?php echo $w->date_time  ?></td>
+											<td><a href="/stock/buy/<?php echo $w->ticker ?>" class="button">Comprar</a></td>
 											<td><a href="/stock/sell/<?php echo $w->ticker ?>" class="button">Vender</a></td>
 										</tr>
 									<?php endforeach ?>

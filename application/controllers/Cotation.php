@@ -24,53 +24,74 @@ class Cotation extends MY_Controller {
 		renderizarPagina($paginas, $this->data);
 	}
 
+	public function get_stocks()
+	{
+		$this->load->model('cotation_model');
+		// $db_stocks = $this->stock_model->get_all();
+		$stocks = [
+			'RLOG3','NEOE3','UNIP6','NEV3'
+		];
+
+		$tem = [];
+		foreach ($stocks as $dbs){
+			$tem[] = $this->cotation_model->search_stock_api($dbs);
+			// sleep(13);
+		}
+
+		pre($tem);
+
+	}
+
 	public function update_all()
 	{
 		$this->load->model('stock_model');
-		$stocks = $this->stock_model->get_all();
+		//$stocks = $this->stock_model->get_all();
 		// $count = count($stocks);
-
+		$stocks = [
+			'VLID3', 'PTBL3', 'BIDI4', 'FLRP11', 'AMZO34', 'RLOG3', 'NEOE3', 'UNIP6', 'YDUQ3', 'PMAM3'
+		];
 		foreach ($stocks as $s => $stock) {
-			$this->update($stock->ticker);
+			//$this->update($stock->ticker);
+			$this->update($stock);
 			sleep(13);
 		}
 	}
 
-	public function import()
-	{
-		$this->load->model('cotation_model');
+	// public function import()
+	// {
+	// 	$this->load->model('cotation_model');
 		
-		$this->load->model('stock_model');
-		$cotations = $this->cotation_model->get_cotations_updated();
-		$stocks = $this->stock_model->get_all();
+	// 	$this->load->model('stock_model');
+	// 	$cotations = $this->cotation_model->get_cotations_updated();
+	// 	$stocks = $this->stock_model->get_all();
 		
-		$symbols= array();
+	// 	$symbols= array();
 
-		foreach ($cotations as $cotation) {
-			$c[$cotation->stock_id] = $cotation;
-		}
+	// 	foreach ($cotations as $cotation) {
+	// 		$c[$cotation->stock_id] = $cotation;
+	// 	}
 		
-		foreach ($stocks as $stock) {		
-			if (!array_key_exists($stock->id_stock, $c)) { 
-				$symbols[$stock->id_stock] = $stock;
-			}
-		}
+	// 	foreach ($stocks as $stock) {		
+	// 		if (!array_key_exists($stock->id_stock, $c)) { 
+	// 			$symbols[$stock->id_stock] = $stock;
+	// 		}
+	// 	}
 
-		$s = current($symbols);
+	// 	$s = current($symbols);
 
-		$cot = $this->cotation_model->get_global_quote($s->ticker);
-		if ($cot && isset($cot['08. previous close'])) {
-			$data = [
-				'id_cotation' => null,
-				'stock_id' => $s->id_stock,
-				'value' => $cot['08. previous close'],
-				'date_time' => date('Y-m-d H:i:s')
-			];
-		}
+	// 	$cot = $this->cotation_model->get_global_quote($s->ticker);
+	// 	if ($cot && isset($cot['08. previous close'])) {
+	// 		$data = [
+	// 			'id_cotation' => null,
+	// 			'stock_id' => $s->id_stock,
+	// 			'value' => $cot['08. previous close'],
+	// 			'date_time' => date('Y-m-d H:i:s')
+	// 		];
+	// 	}
 
 
-		$this->cotation_model->save($data);
-	}
+	// 	$this->cotation_model->save($data);
+	// }
 
 	public function update($ticker) {
 		$this->load->model('cotation_model');

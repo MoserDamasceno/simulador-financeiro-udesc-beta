@@ -16,6 +16,32 @@ class cotation_model extends CI_Model {
 		parent::__construct();
 	}
 
+	public function search_stock_api($symbol = 'BBAS3') {
+		$url = $this->url_api.$this->param.'?function=SYMBOL_SEARCH&keywords='.$symbol.$this->bolsa.'&apikey='.$this->api_key;
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		$data = curl_exec($ch);
+
+		if (curl_errno($ch)) {
+			return "Error: " . curl_error($ch);
+		} else { 
+			$transaction = json_decode($data, TRUE);
+			curl_close($ch);
+			return $transaction;
+			// if (isset($transaction['Note'])) {
+			// 	return 'Limite de requests atingido';
+			// } else if(isset($transaction['Error Message'])){
+			// 	return $transaction['Error Message'];
+			// } else {
+			// 	return $transaction['Global Quote'];
+			// }
+		}
+	}
+
 	public function get_global_quote($symbol = 'BBAS3') {
 		$url = $this->url_api.$this->param.'?function='.$this->global_quote.'&symbol='.$symbol.$this->bolsa.'&apikey='.$this->api_key;
 		$ch = curl_init();
