@@ -29,8 +29,8 @@
 									<th data-field="company">Empresa</th>
 									<th data-field="operation">Operação</th>
 									<th data-field="amount">Quantidade</th>
-									<th data-field="name">Valor unitário</th>
-									<th data-field="operacao">Valor da operação</th>
+									<th data-field="name">Valor unitário (R$)</th>
+									<th data-field="valor_operacao">Valor da operação (R$)</th>
 									<th data-field="data">Data/hora</th>
 
 								</tr>
@@ -50,8 +50,8 @@
 										<td><?php echo $w->company ?></td>
 										<td><?php echo ($w->type == 'buy') ? 'Compra' : 'Venda' ?></td>
 										<td><?php echo $w->quantity ?></td>
-										<td><?php echo converterMoeda(round($w->value, 2))  ?></td>
-										<td><?php echo converterMoeda(round($w->value, 2) * $w->quantity)  ?></td>
+										<td><?php echo number_format(round($w->value, 2), 2, ',', '.')  ?></td>
+										<td><?php echo number_format(round($w->value, 2) * $w->quantity, 2, ',', '.')  ?></td>
 										<td><?php echo date('d/m/Y H:i', strtotime($w->date_time)) ?></td>
 									</tr>
 								<?php endforeach ?>

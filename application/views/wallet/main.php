@@ -27,10 +27,11 @@
 									<th data-field="id">Ticker</th>
 									<th data-field="company">Empresa</th>
 									<th data-field="amount">Quantidade</th>
-									<th data-field="valor_medio">Valor médio</th>
-									<th data-field="valor_atual">Valor atual</th>
+									<th data-field="valor_medio">Valor médio (R$)</th>
+									<th data-field="valor_atual">Valor atual (R$)</th>
 									<th data-field="ultima_atualizacao">Última atualização</th>
-									<th data-field="price"></th>
+									<th data-field="buy"></th>
+									<th data-field="sell"></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -43,8 +44,8 @@
 											<td><?php echo $w->ticker ?></td>
 											<td><?php echo $w->company ?></td>
 											<td><?php echo $w->quantity ?></td>
-											<td><?php echo converterMoeda(round($w->average_price, 2))  ?></td>
-											<td><?php echo converterMoeda(round($w->value, 2))  ?></td>
+											<td><?php echo number_format($w->average_price, 2, ',', '.')  ?></td>
+											<td><?php echo number_format($w->value, 2, ',', '.')  ?></td>
 											<td><?php echo $w->date_time  ?></td>
 											<td><a href="/stock/buy/<?php echo $w->ticker ?>" class="button">Comprar</a></td>
 											<td><a href="/stock/sell/<?php echo $w->ticker ?>" class="button">Vender</a></td>
@@ -61,7 +62,8 @@
 									<td>Total</td>
 									<td><?php echo converterMoeda($total)  ?></td>
 									<td></td>
-									<td></td>
+									<td></td>>
+									<td></td>>
 								</tr>
 							</tfooter>
 						</table>

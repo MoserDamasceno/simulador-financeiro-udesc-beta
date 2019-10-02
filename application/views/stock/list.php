@@ -25,7 +25,7 @@
 								<tr>
 									<th data-field="ticker">Ticker</th>
 									<th data-field="company">Company</th>
-									<th data-field="price">Price</th>
+									<th data-field="price">Price (R$)</th>
 									<th data-field="updated">Last update</th>
 									<th data-field="price">Action</th>
 								</tr>
@@ -35,7 +35,7 @@
 									<tr>
 										<td><?php echo $c->ticker ?></td>
 										<td><?php echo $c->company ?></td>
-										<td><?php echo money_format('%i', $c->value)  ?></td>
+										<td><?php echo converterMoeda($c->value)  ?></td>
 										<td><?php echo date('H:i d/m/Y', strtotime($c->date_time)) ?></td>
 										<td><a href="#" class="button">Buy</a></td>
 									</tr>

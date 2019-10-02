@@ -24,7 +24,7 @@
 								<tr>
 									<th data-field="ticker">Ticker</th>
 									<th data-field="company">Empresa</th>
-									<th data-field="price">Preço</th>
+									<th data-field="price">Preço (R$)</th>
 									<th data-field="updated">Última atualização</th>
 									<th data-field="price"></th>
 								</tr>
@@ -34,7 +34,7 @@
 									<tr>
 										<td><?php echo $c->ticker ?></td>
 										<td><?php echo $c->company ?></td>
-										<td><?php echo str_replace('BRL', '', money_format('%i', $c->value))  ?></td>
+										<td><?php echo number_format($c->value, 2, ',', '.') ?></td>
 										<td><?php echo date('H:i d/m/Y', strtotime($c->date_time)) ?></td>
 										<td><a href="/stock/buy/<?php echo $c->ticker ?>" class="button">Comprar</a></td>
 									</tr>

@@ -27,9 +27,9 @@
 								<tr>
 									<th data-field="nome">Nome</th>
 									<th data-field="disciplina">Disciplina</th>
-									<th data-field="saldo_atual">Saldo atual</th>
-									<th data-field="amount">Valor em ativos</th>
-									<th data-field="valot_total">Valor total</th>
+									<th data-field="saldo_atual">Saldo atual (R$)</th>
+									<th data-field="amount">Valor em ativos (R$)</th>
+									<th data-field="valot_total">Valor total (R$)</th>
 									<th data-field="variacao">Variação total (%)</th>
 								</tr>
 							</thead>
@@ -41,9 +41,9 @@
 										<tr>
 											<td><?php echo $u->name ?></td>
 											<td><?php echo $u->class ?></td>
-											<td><?php echo converterMoeda($u->values['valor_atual']) ?></td>
-											<td><?php echo converterMoeda($u->values['valor_ativos']) ?></td>
-											<td><?php echo converterMoeda($u->values['valor_total']) ?></td>
+											<td><?php echo number_format($u->values['valor_atual'], 2, ',', '.' ) ?></td>
+											<td><?php echo number_format($u->values['valor_ativos'], 2, ',', '.' ) ?></td>
+											<td><?php echo number_format($u->values['valor_total'], 2, ',', '.' ) ?></td>
 											<td><?php echo $u->values['variacao'] ?></td>
 										</tr>
 									<?php endforeach ?>
@@ -56,6 +56,7 @@
 									<td></td>
 									<td>Total</td>
 									<td><?php echo converterMoeda($total)  ?></td>
+									<td></td>
 									<td></td>
 								</tr>
 							</tfooter>

@@ -330,7 +330,11 @@ function converterMoeda($valor, $direction = 'interface')
 				$valor = number_format($valor, 2, ',', '.');
 			}
 			return 'R$ ' . $valor;
-		
+		case 'dotless':
+			if (is_numeric($valor)) {
+				$valor = number_format($valor, 2, ',', '.');
+			}
+			return $valor;
 		case 'mysql':
 			$valor = str_replace('.', '', $valor);
 			$valor = str_replace(',', '.', $valor);

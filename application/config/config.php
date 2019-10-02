@@ -1,5 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+date_default_timezone_set('America/Sao_Paulo');
+
 include $_SERVER['DOCUMENT_ROOT'] . '/env.php';
 
 $error_env = 'Você deve configurar corretamente o arquivo env.php localizado na raiz do projeto';
@@ -647,7 +649,7 @@ $config['compress_output'] = TRUE;
 | helper' page of the user guide for information regarding date handling.
 |
 */
-$config['time_reference'] = 'local';
+$config['time_reference'] = 'America/Sao_Paulo';
 
 /*
 |--------------------------------------------------------------------------
