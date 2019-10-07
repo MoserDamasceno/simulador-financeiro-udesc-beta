@@ -38,8 +38,7 @@
 date_default_timezone_set('America/Sao_Paulo');
 $hora = intval(date('H'));
  if	($hora > 10 || $hora < 19){
-	echo 'O sistema está fora do horário de funcionamento';
-	var_dump($hora);
+	echo 'O sistema está fora do horário de funcionamento.';
 	exit;
  }
 /*
