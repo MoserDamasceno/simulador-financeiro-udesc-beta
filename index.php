@@ -36,8 +36,9 @@
  * @filesource
  */
 $hora = intval(date('H'));
- if	($hora > 10 && $hora < 19){
+ if	($hora > 10 || $hora < 19){
 	echo 'O sistema está fora do horário de funcionamento';
+	var_dump($hora);
 	exit;
  }
 /*
