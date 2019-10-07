@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-date_default_timezone_set('America/Sao_Paulo');
 
 include $_SERVER['DOCUMENT_ROOT'] . '/env.php';
 
