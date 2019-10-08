@@ -51,21 +51,26 @@ class MY_Controller extends CI_Controller
         $this->load->model('wallet_model');
         $this->user = $this->session->userdata('user');
         
-        $userwallet = $this->wallet_model->get_by_user($this->user->id_user);
-        if($userwallet){
-            $sum = 0;
-            foreach($userwallet as $w){
-                $sum += $w->quantity * $w->average_price;
+        if(isset($this->user->id_user)){
+            $userwallet = $this->wallet_model->get_by_user($this->user->id_user);
+            if($userwallet){
+                $sum = 0;
+                foreach($userwallet as $w){
+                    $sum += $w->quantity * $w->average_price;
+                }
+                $this->user->saldo_ativos = $sum;
+    
+            } else {
+                $this->user->saldo_ativos = 0;
             }
-            $this->user->saldo_ativos = $sum;
-
-        } else {
-            $this->user->saldo_ativos = 0;
+    
+            $this->session->set_userdata('user', $this->user);
+            $this->check();            
+            
+        } else if (isset($this->user->saldo_ativos)) {
+            redirect('auth/logout');
         }
-
-        $this->session->set_userdata('user', $this->user);
         
-        $this->check();
         setlocale(LC_MONETARY, 'pt_BR');
     }
 
