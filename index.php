@@ -36,12 +36,12 @@
  * @filesource
  */
 date_default_timezone_set('America/Sao_Paulo');
-$hora = intval(date('H'));
- if	($hora > 10 && $hora < 19){
-	echo 'O sistema está fora do horário de funcionamento. <br/>';
-	echo 'Hora atual:' . $hora.  date('H:i:s');
-	exit;
- }
+// $hora = intval(date('H'));
+//  if	($hora > 10 && $hora < 19){
+// 	echo 'O sistema está fora do horário de funcionamento. <br/>';
+// 	echo 'Hora atual:' . $hora.  date('H:i:s');
+// 	exit;
+//  }
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
