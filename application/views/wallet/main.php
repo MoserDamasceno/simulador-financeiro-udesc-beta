@@ -62,8 +62,8 @@
 									<td>Total</td>
 									<td><?php echo converterMoeda($total)  ?></td>
 									<td></td>
-									<td></td>>
-									<td></td>>
+									<td></td>
+									<td></td>
 								</tr>
 							</tfooter>
 						</table>
