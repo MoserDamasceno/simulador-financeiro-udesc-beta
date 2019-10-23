@@ -96,11 +96,11 @@ class Cotation extends MY_Controller {
 		if ($stock) {
 			$cot = $this->cotation_model->get_global_quote($ticker);
 
-			if ($cot && isset($cot['08. previous close'])) {
+			if ($cot && isset($cot['05. price'])) {
 				$data = [
 					'id_cotation' => null,
 					'stock_id' => $stock->id_stock,
-					'value' => $cot['08. previous close'],
+					'value' => $cot['05. price'],
 					'date_time' => date('Y-m-d H:i:s')
 				];
 				$this->cotation_model->save($data);
