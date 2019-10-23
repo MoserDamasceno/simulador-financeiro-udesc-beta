@@ -6,7 +6,7 @@
 				<h2>Seja bem vindo <?php echo $user->name ?></h2>
 			</div>
 			<div class="col-md-6">
-				
+
 			</div>
 		</div>
 	</div>
@@ -31,13 +31,14 @@
 								</tr>
 							</thead>
 							<tbody>
-								<?php foreach ($cotations as $c): ?>
+								<?php foreach ($cotations as $c) : ?>
 									<tr>
 										<td><?php echo $c->ticker ?></td>
 										<td><?php echo $c->company ?></td>
 										<td><?php echo converterMoeda($c->value)  ?></td>
 										<td><?php echo date('H:i d/m/Y', strtotime($c->date_time)) ?></td>
 										<td><a href="#" class="button">Buy</a></td>
+										<td><a href="https://br.tradingview.com/symbols/BMFBOVESPA-<?php echo $c->ticker ?>" class="button">Trading View</a></td>
 									</tr>
 								<?php endforeach ?>
 							</tbody>
@@ -53,7 +54,7 @@
 					<p>Ativos em sua carteira</p>
 				</div>
 				<div class="widget-container">
-					
+
 					<div class="widget-content">
 						<table class="table table-striped">
 
@@ -68,8 +69,8 @@
 							</thead>
 							<tbody>
 								<?php $total = 0 ?>
-								<?php foreach ($wallet as $w): ?>
-									<?php $total += round($w->value, 2) * $w->quantity?>
+								<?php foreach ($wallet as $w) : ?>
+									<?php $total += round($w->value, 2) * $w->quantity ?>
 									<tr>
 										<td><?php echo $w->ticker ?></td>
 										<td><?php echo $w->company ?></td>
