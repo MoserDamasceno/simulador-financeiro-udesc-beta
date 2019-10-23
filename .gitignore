@@ -11,7 +11,7 @@ application/logs/*
 #application/config/database.php
 #application/config/config.php
 env.php
-
+index.php
 composer.lock
 
 user_guide_src/build/*
