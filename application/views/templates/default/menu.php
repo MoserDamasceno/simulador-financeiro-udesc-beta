@@ -10,7 +10,7 @@
 				?>
 				<li>
 					<div class="logo">
-						<!-- <a href="<?php echo base_url() ?>" title="Admin Template"><img src="<?php echo assets_url() ?>images/ebgesc-logo.png" alt="logo"></a> -->
+						<a href="<?php echo base_url() ?>"><img src="<?php echo assets_url() ?>images/logo-esag.png" alt="logo" style="width: 140px"></a>
 					</div>
 				</li>
 			</ul>
@@ -27,12 +27,12 @@
 
 	<div class="topbar-right pull-right">
 		<div class="clearfix">
-			<ul class="pull-right top-right-icons" >
+			<ul class="pull-right top-right-icons">
 				<li style="padding: 18px 15px;">
-					<b>Saldo monetário:</b> <?php echo converterMoeda(round($user->saldo, 2))?>
+					<b>Saldo monetário:</b> <?php echo converterMoeda(round($user->saldo, 2)) ?>
 				</li>
 				<li style="padding: 18px 15px;">
-					<b>Saldo em ativos:</b> <?php echo converterMoeda(round($user->saldo_ativos, 2))?>
+					<b>Saldo em ativos:</b> <?php echo converterMoeda(round($user->saldo_ativos, 2)) ?>
 				</li>
 			</ul>
 		</div>
