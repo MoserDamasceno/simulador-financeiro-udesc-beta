@@ -1569,7 +1569,7 @@
     if ($.fn.dataTable) {
         var table = $('.data-tbl').DataTable({
             responsive: true,
-                        "columnDefs": [ { "targets": [0], "orderable": true }],
+                        "columnDefs": [ { "targets": [], "orderable": true }],
             "oLanguage": {
                 "sLengthMenu": '<select class="tbl-data-select">' +
                     '<option value="10">10</option>' +
