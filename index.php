@@ -39,7 +39,7 @@ date_default_timezone_set('America/Sao_Paulo');
 $hora = intval(date('H'));
 $dia = date('w');
 
-if(!strpos($_SERVER['REQUEST_URI'], 'cotations/update_all')){
+if(!strpos($_SERVER['REQUEST_URI'], 'cotation/update_all')){
 	if ($dia != 0 && $dia != 6 ) {
 		if	($hora >= 10 && $hora < 19){	
 			echo '<div class="out">';
