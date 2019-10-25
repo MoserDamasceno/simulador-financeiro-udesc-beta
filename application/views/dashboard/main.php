@@ -38,6 +38,7 @@
 										<td><?php echo number_format($c->value, 2, ',', '.') ?></td>
 										<td><?php echo date('H:i d/m/Y', strtotime($c->date_time)) ?></td>
 										<td><a target="_blank" href="https://br.tradingview.com/chart/?symbol=BMFBOVESPA%3A<?php echo $c->ticker ?>" class="button">Análise técnica</a></td>
+										<td><a target="_blank" href="https://www.fundamentus.com.br/detalhes.php?papel=<?php echo $c->ticker ?>" class="button">Análise fundamentalista</a></td>
 										<td><a href="/stock/buy/<?php echo $c->ticker ?>" class="button">Comprar</a></td>
 									</tr>
 								<?php endforeach ?>

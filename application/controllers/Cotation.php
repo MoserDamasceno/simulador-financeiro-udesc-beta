@@ -90,6 +90,8 @@ class Cotation extends MY_Controller {
 	// }
 
 	public function update($ticker) {
+		$this->output
+			->set_content_type('text/html');
 		$this->load->model('cotation_model');
 		$this->load->model('stock_model');
 		$stock = $this->stock_model->get_by_ticker($ticker);
@@ -106,7 +108,7 @@ class Cotation extends MY_Controller {
 				$this->cotation_model->save($data);
 				echo "Ação atualizada " . $ticker . "<br/>";
 			} else {
-				// pre($cot);
+				pre($cot);
 				echo $cot;
 			}
 
