@@ -36,35 +36,35 @@
  * @filesource
  */
 date_default_timezone_set('America/Sao_Paulo');
-$hora = intval(date('H'));
-$dia = date('w');
+// $hora = intval(date('H'));
+// $dia = date('w');
 
-if(!strpos($_SERVER['REQUEST_URI'], 'cotation/update_all')){
-	if ($dia != 0 && $dia != 6 ) {
-		if	($hora >= 10 && $hora < 19){	
-			echo '<div class="out">';
-			echo '<h1>Fora do horário de funcionamento. </h1>';
-			$hora_sistema = 19 - $hora - 1;
-			$minutos_sistema = 60 - intval(date('i'));
-			echo '<p>O sistema voltará em '. $hora_sistema . ' horas e '.$minutos_sistema .' minutos. </p>';
-			echo '</div>';
-			echo '
-			<style>
-			.out{
-				font-family: Arial;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				height: 100%;
-				text-align: center;
-				flex-direction: column;
-			}
-			</style>
-			';
-			exit;
-		}
-	}
-}
+// if(!strpos($_SERVER['REQUEST_URI'], 'cotation/update_all')){
+// 	if ($dia != 0 && $dia != 6 ) {
+// 		if	($hora >= 10 && $hora < 19){	
+// 			echo '<div class="out">';
+// 			echo '<h1>Fora do horário de funcionamento. </h1>';
+// 			$hora_sistema = 19 - $hora - 1;
+// 			$minutos_sistema = 60 - intval(date('i'));
+// 			echo '<p>O sistema voltará em '. $hora_sistema . ' horas e '.$minutos_sistema .' minutos. </p>';
+// 			echo '</div>';
+// 			echo '
+// 			<style>
+// 			.out{
+// 				font-family: Arial;
+// 				display: flex;
+// 				align-items: center;
+// 				justify-content: center;
+// 				height: 100%;
+// 				text-align: center;
+// 				flex-direction: column;
+// 			}
+// 			</style>
+// 			';
+// 			exit;
+// 		}
+// 	}
+// }
 
 /*
  *---------------------------------------------------------------

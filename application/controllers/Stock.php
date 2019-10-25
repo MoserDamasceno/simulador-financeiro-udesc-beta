@@ -5,7 +5,14 @@ class Stock extends MY_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-	
+		$hora = intval(date('H'));
+		$dia = date('w');
+		if ($dia != 0 && $dia != 6) {
+			if ($hora >= 10 && $hora < 19) {
+				message('error', 'Não é possível fazer operações entre 10:00 e 19:00.');
+				redirect('dashboard');
+			}
+		}
 	}
 
 	public function index() {
