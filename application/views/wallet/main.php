@@ -68,7 +68,6 @@
 							</tfooter>
 						</table>
 					</div>
-
 				</div>
 			</div>
 		</div>
