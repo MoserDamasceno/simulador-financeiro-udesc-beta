@@ -28,6 +28,7 @@
 									<th data-field="updated">Última atualização</th>
 									<th data-field="price"></th>
 									<th data-field="price"></th>
+									<th data-field="price"></th>
 								</tr>
 							</thead>
 							<tbody>
