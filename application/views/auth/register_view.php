@@ -36,8 +36,8 @@
 							<div class="input login-input">
 								<select class="form-control login-frm-input" name="class" id="class">
 									<option value>Disciplina</option>
-									<option value="1">ESFI 2019/2</option>
-									<option value="2">MEFCA 2019/2</option>
+									<option value="3">ESFI 2020/1</option>
+									<option value="4">MEFCA 2020/1</option>
 								</select>
 							</div>
 						</div>
