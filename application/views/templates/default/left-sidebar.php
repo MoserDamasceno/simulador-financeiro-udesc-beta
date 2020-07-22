@@ -43,7 +43,7 @@
 				</li>
 				<?php if ($this->session->userdata('user')->role_id == 1): ?>
 					<li>
-						<a href="<?php echo base_url('cotation/update_all') ?>"><i class="zmdi zmdi-group-work"></i><span class="list-label">Atualizar cotações</span></a>
+						<a href="<?php echo base_url('cotation') ?>"><i class="zmdi zmdi-group-work"></i><span class="list-label">Atualizar cotações</span></a>
 					</li>
 					<!-- 
 					<li>

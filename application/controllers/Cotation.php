@@ -12,15 +12,15 @@ class Cotation extends MY_Controller {
 
 	public function index() {
 		$this->data['title'] = 'Importação';
-		$this->data['breadcrumbs'] = array(
-			array('url' => '/', 'title' => 'Home'),
-			array('url' => '#', 'title' => 'Importação')
-		);
+		$this->data['user'] = $user = $this->session->userdata('user');
+		$this->data['breadcrumbs'] = [
+			['url' => '/', 'title' => 'Home'],
+			['url' => '#', 'title' => 'Atualização'],
+		];
 
-		adicionarCanonical(base_url() . 'import');
+		adicionarCanonical(base_url() . 'import/update');
 
-		$paginas = array('import/add_file');
-
+		$paginas = array('import/update_all');
 		renderizarPagina($paginas, $this->data);
 	}
 
