@@ -1,0 +1,111 @@
+IRBR3 - DESDOBRAMENTO
+Fator: 1/3
+Preço dividir por 3
+Quantidade Multiplicar por 3
+
+------------------------------------------
+
+Código ação 125 
+Ticker: BIDI4
+Fator: 0,018231
+
+Alunos:
+Código aluno:   27
+Quantidade:     8900
+Valor total:    162,2559
+
+Código aluno:   28
+Quantidade:     500
+Valor total:    9,1155
+
+Código aluno:   33
+Quantidade:     1000
+Valor total:    18,231
+
+Código aluno:   34
+Quantidade:     1000
+Valor total:    18,231
+
+------------------------------------------
+Código ação  6
+Ticker: BBDC4
+Fator: 0,018975
+
+Alunos:
+Código aluno:   25
+Quantidade:     1200
+Valor total:    22,77
+
+Código aluno:   28
+Quantidade:     1000
+Valor total:    18,975
+
+Código aluno:   29
+Quantidade:     5900
+Valor total:    111,9525
+
+Código aluno:   33
+Quantidade:     1500
+Valor total:    28,4625
+
+------------------------------------------
+Código ação  53
+Ticker: ITUB4
+Fator: 0,015
+
+Alunos:
+
+Código aluno:   28
+Quantidades:    700
+Valor total:    10,5
+
+Código aluno:   33
+Quantidades:    2000
+Valor total:    30
+
+Código aluno:   25
+Quantidades:    1500
+Valor total:    22,5
+
+Código aluno:   30
+Quantidades:    3900
+Valor total:    58,5
+
+Código aluno:   49
+Quantidades:    3
+Valor total:    0,045
+
+------------------------------------------
+Código ação: 62
+Ticker: MGLU
+Fator: 0,073607
+
+Alunos:
+
+Código aluno:	28
+Quantidades:	3500
+Valor total:	257,6245
+	
+Código aluno:	30
+Quantidades:	7300
+Valor total:	537,3311
+	
+Código aluno:	39
+Quantidades:	6850
+Valor total:	504,20795
+	
+Código aluno:	45
+Quantidades:	2000
+Valor total:	147,214
+	
+Código aluno:	33
+Quantidades:	6000
+Valor total:	441,642
+	
+Código aluno:	36
+Quantidades:	1000
+Valor total:	73,607
+	
+Código aluno:	25
+Quantidades:	100
+Valor total:	7,3607

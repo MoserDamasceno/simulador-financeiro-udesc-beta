@@ -38,14 +38,14 @@
 				<li>
 					<a href="<?php echo base_url('transaction') ?>"><i class="zmdi zmdi-group-work"></i><span class="list-label">Transações</span></a>
 				</li>
-					<li>
-						<a href="<?php echo base_url('wallet/ranking') ?>"><i class="zmdi zmdi-ticket-star"></i><span class="list-label">Ranking</span></a>
-					</li>
+				<li>
+					<a href="<?php echo base_url('wallet/ranking') ?>"><i class="zmdi zmdi-ticket-star"></i><span class="list-label">Ranking</span></a>
+				</li>
 				<?php if ($this->session->userdata('user')->role_id == 1): ?>
-					<!-- 
 					<li>
-						<a href="<?php echo base_url('classes') ?>"><i class="zmdi zmdi-group-work"></i><span class="list-label">Classes</span></a>
+						<a href="<?php echo base_url('cotation/update_all') ?>"><i class="zmdi zmdi-group-work"></i><span class="list-label">Atualizar cotações</span></a>
 					</li>
+					<!-- 
 					<li>
 						<a href="<?php echo base_url('import') ?>"><i class="zmdi zmdi-file-plus"></i><span class="list-label">Importações</span></a>
 					</li>
