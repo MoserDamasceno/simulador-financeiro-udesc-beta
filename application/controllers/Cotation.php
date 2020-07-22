@@ -48,7 +48,7 @@ class Cotation extends MY_Controller {
 		$stocks = $this->stock_model->get_all();
 		
 		foreach ($stocks as $s => $stock) {
-			$this->update($stock->ticker);
+			$this->update($stock->ticker, true);
 			sleep(13);
 		}
 	}
@@ -89,12 +89,11 @@ class Cotation extends MY_Controller {
 	// 	$this->cotation_model->save($data);
 	// }
 
-	public function update($ticker) {
-		$this->output
-			->set_content_type('text/html');
+	public function update($ticker, $print = false) {
 		$this->load->model('cotation_model');
 		$this->load->model('stock_model');
 		$stock = $this->stock_model->get_by_ticker($ticker);
+		$response = '';
 		if ($stock) {
 			$cot = $this->cotation_model->get_global_quote($ticker);
 
@@ -106,15 +105,35 @@ class Cotation extends MY_Controller {
 					'date_time' => date('Y-m-d H:i:s')
 				];
 				$this->cotation_model->save($data);
-				echo "Ação atualizada " . $ticker . "<br/>";
+				$response = "Ação atualizada " . $ticker . "<br/>";
 			} else {
 				// pre($cot);
-				echo $ticker . " - Mensagem:" . $cot;
+				$response = $ticker . " - Mensagem:" . $cot;
 			}
 
 		} else {
-			echo 'Ação não encontrada <br/>';
+			$response = 'Ação não encontrada <br/>';
 		}
+
+		if($print){
+			$this->output->set_content_type('text/html');
+			echo $response;
+		} else {
+			$this->data['title'] = 'Ação importada';
+			$this->data['user'] = $user = $this->session->userdata('user');
+			$this->data['response'] = $response;
+			$this->data['breadcrumbs'] = [
+				['url' => '/', 'title' => 'Home'],
+				['url' => '#', 'title' => 'Atualização'],
+			];
+	
+			adicionarCanonical(base_url() . 'import/update');
+	
+			$paginas = array('import/success-one-ticker');
+			renderizarPagina($paginas, $this->data);
+
+		}
+
 	}
 
 	public function success() {

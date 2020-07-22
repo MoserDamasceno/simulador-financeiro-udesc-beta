@@ -29,6 +29,9 @@
 									<th data-field="price"></th>
 									<th data-field="price"></th>
 									<th data-field="price"></th>
+									<?php if ($this->session->userdata('user')->role_id == 1) : ?>
+										<th data-field="price"></th>
+									<?php endif; ?>
 								</tr>
 							</thead>
 							<tbody>
@@ -41,6 +44,9 @@
 										<td><a target="_blank" href="https://br.tradingview.com/chart/?symbol=BMFBOVESPA%3A<?php echo $c->ticker ?>" class="button">Análise técnica</a></td>
 										<td><a target="_blank" href="https://www.fundamentus.com.br/detalhes.php?papel=<?php echo $c->ticker ?>" class="button">Análise fundamentalista</a></td>
 										<td><a href="/stock/buy/<?php echo $c->ticker ?>" class="button">Comprar</a></td>
+										<?php if ($this->session->userdata('user')->role_id == 1) : ?>
+											<td><a href="<?php echo base_url( 'cotation/update/' . $c->ticker) ?>" class="button">Atualizar</a></td>
+										<?php endif; ?>
 									</tr>
 								<?php endforeach ?>
 							</tbody>
