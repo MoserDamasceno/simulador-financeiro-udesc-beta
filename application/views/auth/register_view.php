@@ -9,10 +9,10 @@
 							<img src="<?php echo assets_url() ?>images/ebgesc-logo-azul.png" alt="logo">
 						</div> -->
 					</div>
-					<?php if (isset($error)): ?>
+					<?php if (isset($error)) : ?>
 						<div class="alert alert-danger" role="alert">
-						<?php echo $error ?>
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<?php echo $error ?>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
@@ -28,7 +28,7 @@
 
 						<div class="unit">
 							<div class="input login-input">
-								<input class="form-control login-frm-input"  type="text" id="email" name="email" placeholder="Email">
+								<input class="form-control login-frm-input" type="text" id="email" name="email" placeholder="Email">
 							</div>
 						</div>
 
@@ -38,6 +38,7 @@
 									<option value>Disciplina</option>
 									<option value="3">ESFI 2020/1</option>
 									<option value="4">MEFCA 2020/1</option>
+									<option value="5">MECA Prof. Tomasi 2020/1</option>
 								</select>
 							</div>
 						</div>
@@ -46,7 +47,7 @@
 						<!-- start password -->
 						<div class="unit">
 							<div class="input login-input">
-								<input class="form-control login-frm-input"  type="password" id="password" name="password" placeholder="Senha">
+								<input class="form-control login-frm-input" type="password" id="password" name="password" placeholder="Senha">
 							</div>
 						</div>
 
@@ -57,18 +58,18 @@
 							</span>
 						</div>
 
-		</div>
-						<!-- end password -->
-
-						<!-- start response from server -->
-						<div class="response"></div>
-						<!-- end response from server -->
 					</div>
-					<div class="login-form-footer">
-						<button type="submit" class="btn-block btn btn-primary">Registrar</button>
-					</div>
+					<!-- end password -->
 
-				</form>
+					<!-- start response from server -->
+					<div class="response"></div>
+					<!-- end response from server -->
 			</div>
+			<div class="login-form-footer">
+				<button type="submit" class="btn-block btn btn-primary">Registrar</button>
+			</div>
+
+			</form>
 		</div>
+	</div>
 	</div>
