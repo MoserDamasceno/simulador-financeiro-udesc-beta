@@ -3,12 +3,12 @@
     <div class="page-header single-line">
         <div class="row">
             <div class="col-md-6">
-                <h2>Usuários</h2>
+                <h2>Turmas</h2>
             </div>
             <div class="col-md-6">
                 <ul class="list-page-breadcrumb">
                     <li><a href="#">Home <i class="zmdi zmdi-chevron-right"></i></a></li>
-                    <li><a href="#">Usuários <i class="zmdi zmdi-chevron-right"></i></a></li>
+                    <li><a href="#">Turmas <i class="zmdi zmdi-chevron-right"></i></a></li>
                     <li class="active-page"> Lista</li>
                 </ul>
             </div>
@@ -24,12 +24,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="widget-header text-left">
-                                        <h3>Lista de usuários</h3>
+                                        <h3>Lista de turmas</h3>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="widget-header text-right">
-                                        <a class="btn btn-primary" href="<?php echo base_url('user/create') ?>">Adicionar usuário</a>
+                                        <a class="btn btn-primary" href="<?php echo base_url('turma/create') ?>">Adicionar turma</a>
                                     </div>
                                 </div>
 
@@ -39,28 +39,21 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nome</th>
-                                <th>Email</th>
-                                <th>Telefone</th>
-                                <th>Permissão</th>
                                 <th>Turma</th>
                                 <th class="td-center">Ações</th>
                             </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($users as $user): ?>
+                                <?php foreach ($classes as $class): ?>
                                     <tr>
-                                        <td><?php echo $user->id_user ?></td>
-                                        <td><?php echo $user->name ?></td>
-                                        <td><?php echo $user->email ?></td>
-                                        <td><?php echo $user->phone ?></td>
-                                        <td><?php echo $user->role ?></td>
-                                        <td><?php echo $user->class ?></td>
+                                        <td><?php echo $class->id_class ?></td>
+                                        <td><?php echo $class->class ?></td>
                                         <td class="td-center">
                                             <div class="btn-toolbar" role="toolbar">
                                                 <div class="btn-group" role="group">
-                                                    <a href="<?php echo base_url('user/edit/' . $user->id_user) ?>" class="btn btn-default btn-sm m-user-edit"><i class="zmdi zmdi-edit"></i></a>
-                                                    <a href="#" data-id="<?php echo $user->id_user ?>" class="btn btn-default btn-sm m-user-delete user-delete"><i class="zmdi zmdi-close"></i></a>
+                                                    <a href="<?php echo base_url('turma/alunos/' . $class->id_class) ?>" class="btn btn-default btn-sm m-turma-edit">Ver alunos</a>
+                                                    <a href="<?php echo base_url('turma/edit/' . $class->id_class) ?>" class="btn btn-default btn-sm m-turma-edit"><i class="zmdi zmdi-edit"></i></a>
+                                                    <a href="#" data-id="<?php echo $class->id_class ?>" class="btn btn-default btn-sm m-turma-delete turma-delete"><i class="zmdi zmdi-close"></i></a>
                                                 </div>
                                             </div>
                                         </td>

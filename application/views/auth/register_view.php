@@ -36,9 +36,9 @@
 							<div class="input login-input">
 								<select class="form-control login-frm-input" name="class" id="class">
 									<option value>Disciplina</option>
-									<option value="3">ESFI 2020/1</option>
-									<option value="4">MEFCA 2020/1</option>
-									<option value="5">MECA Prof. Tomasi 2020/1</option>
+									<?php foreach ($turmas as $t => $turma) : ?>
+										<option value="<?php echo $turma->id_class; ?>"><?php echo $turma->class; ?></option>
+									<?php endforeach; ?>
 								</select>
 							</div>
 						</div>

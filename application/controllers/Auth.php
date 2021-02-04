@@ -79,8 +79,10 @@ class Auth extends CI_Controller {
 		}
 
 		$this->is_logged();
+		$this->load->model('turma_model');
 
 		$this->data['title'] = 'Cadastrar';
+		$this->data['turmas'] = $this->turma_model->get_all();
 		adicionarCanonical(base_url() . 'register');
 		adicionarJavaScript('pages/home.js');
 		adicionarStyle('login.css');

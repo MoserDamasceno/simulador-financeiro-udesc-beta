@@ -70,6 +70,13 @@ class User_model extends CI_Model {
 		->row();
 	}
 
+	public function get_by_class($class)
+	{
+		return $this->db->where('class', $class)
+		->get($this->table_user)
+		->result();
+	}
+
 	public function check_saldo($quantity, $price, $id_user)
 	{
 		$total = doubleval($quantity) * doubleval($price);
@@ -88,7 +95,7 @@ class User_model extends CI_Model {
 
 	public function get_all() {
 		return $this->db
-		->where('deleted_at', NULL)
+		->where('u.deleted_at', NULL)
 		->join($this->table_role . ' as r', 'u.role_id = r.id', 'left')
 		->join($this->table_class . ' as c', 'u.class = c.id_class', 'left')
 		->get($this->table_user . ' as u')

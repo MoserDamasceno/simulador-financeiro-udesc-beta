@@ -7,27 +7,47 @@ class Turma extends MY_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('turma_model');
+		$this->data['user'] = $user = $this->session->userdata('user');
 	}
 
 	public function index()
 	{
-		$this->data['title'] = 'Usuários';
-		$this->data['users'] = $this->user_model->get_all();
-		$this->data['type_user'] = $this->user_model->get_type_user();
-		adicionarCanonical(base_url() . 'user');
+		$this->data['title'] = 'Turmas';
+		$this->data['classes'] = $this->turma_model->get_all();
+		adicionarCanonical(base_url() . 'class');
 
-		$paginas = array('user/list_users');
+		$paginas = array('turma/list_turmas');
 
 		renderizarPagina($paginas, $this->data);
 	}
 
+	public function alunos($id = null)
+	{
+		$this->data['title'] = 'Turmas';
+		$this->data['classes'] = $this->turma_model->get_all();
+		$class = $this->turma_model->get($id);
+		adicionarCanonical(base_url() . 'turma');
+		
+		if ($class) {
+			$this->data['class'] = $class;
+			$this->data['alunos'] = $this->user_model->get_by_class($id);
+			$paginas = array('turma/list_alunos_turma');
+			renderizarPagina($paginas, $this->data);
+		} else {
+			message('error', 'Turma não encontrada.');
+			redirect('turma');
+		}
+
+		
+	}
+
 	public function create()
 	{
-		$this->data['type_user'] = $this->user_model->get_type_user();
-		$this->data['title'] = 'Adicionar Usuário';
-		adicionarCanonical(base_url() . 'user/create');
+		$this->data['title'] = 'Adicionar Turma';
+		adicionarCanonical(base_url() . 'turma/create');
 
-		$paginas = array('user/create_user');
+		$paginas = array('turma/create_turma');
 		renderizarPagina($paginas, $this->data);
 	}
 
@@ -35,31 +55,31 @@ class Turma extends MY_Controller {
 	{
 
 		if ($id === null) {
-			redirect('user');
+			redirect('turma');
 		}
 
-		$user = $this->user_model->get($id); 
-		if ($user) {
-			$this->data['title'] = 'Adicionar Usuário';
-			$this->data['user'] = $user;
-			$this->data['type_user'] = $this->user_model->get_type_user();
-			adicionarCanonical(base_url() . 'user/create');
+		$class = $this->turma_model->get($id); 
+		if ($class) {
+			$this->data['title'] = 'Editar Turma';
+			$this->data['class'] = $class;
+			adicionarCanonical(base_url() . 'class/edit');
 
-			$paginas = array('user/edit_user');
+			$paginas = array('turma/edit_turma');
 			renderizarPagina($paginas, $this->data);
 
 		} else {
-			// Mensagem Usuário não encontrado
+			message('error', 'Turma não encontrada.');
+			redirect('turma');
 		}
 
 	}
 
 	public function delete($id)
 	{
-		$res =  $this->user_model->delete($id);
+		$res =  $this->turma_model->delete($id);
 		if ($res) {
-			message('success', 'Usuário excluído com sucesso');
-			redirect('user');
+			message('success', 'Turma excluída com sucesso');
+			redirect('turma');
 		}
 	}
 
@@ -67,26 +87,20 @@ class Turma extends MY_Controller {
 
 	public function save($id = null) {
 		if ($this->input->post()) {
-			$data['id_user'] = $this->input->post('id_user');
-			$data['name'] = $this->input->post('name');
-			$data['email'] = $this->input->post('email');
-			$data['phone'] = $this->input->post('phone');
-			$data['role_id'] = $this->input->post('role_id');
-			if ($this->input->post('password')) {
-				$data['password'] = MD5($this->input->post('password'));
-			}
+			$data['id_class'] = $this->input->post('id_class');
+			$data['class'] = $this->input->post('class');
 
-			$res = $this->user_model->save($data);
+			$res = $this->turma_model->save($data);
 			if (!$res) {
 				message('error', 'Ocorreu algum erro, repita a operação.');
 			} else {
 				if ($id) {
-					message('success', 'Usuário alterado com suceso!');
+					message('success', 'Turma alterada com sucesso!');
 				}else{
-					message('success', 'Usuário cadastrado com suceso!');
+					message('success', 'Turma cadastrada com sucesso!');
 				}
 			}
-			redirect('user');
+			redirect('turma');
 		}
 	}
 

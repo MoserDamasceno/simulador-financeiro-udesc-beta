@@ -7,14 +7,16 @@ class User extends MY_Controller
 
     public function __construct()
     {
-        parent::__construct();
+		parent::__construct();
+		$this->data['user'] = $user = $this->session->userdata('user');
+		$this->load->model('turma_model');
     }
 
     public function index()
     {
         $this->data['title'] = 'Usuários';
         $this->data['users'] = $this->user_model->get_all();
-        $this->data['type_user'] = $this->user_model->get_type_user();
+		$this->data['type_user'] = $this->user_model->get_type_user();
         adicionarCanonical(base_url() . 'user');
 
         $paginas = array('user/list_users');
@@ -24,7 +26,8 @@ class User extends MY_Controller
 
     public function create()
     {
-        $this->data['type_user'] = $this->user_model->get_type_user();
+		$this->data['type_user'] = $this->user_model->get_type_user();
+		$this->data['classes'] = $this->turma_model->get_all();
         $this->data['title'] = 'Adicionar Usuário';
         adicionarCanonical(base_url() . 'user/create');
 
@@ -42,14 +45,16 @@ class User extends MY_Controller
         $user = $this->user_model->get($id);
         if ($user) {
             $this->data['title'] = 'Adicionar Usuário';
-            $this->data['user'] = $user;
+			$this->data['user'] = $user;
+			$this->data['classes'] = $this->turma_model->get_all();
             $this->data['type_user'] = $this->user_model->get_type_user();
             adicionarCanonical(base_url() . 'user/create');
 
             $paginas = array('user/edit_user');
             renderizarPagina($paginas, $this->data);
         } else {
-            // Mensagem Usuário não encontrado
+			message('error', 'Usuário não encontrado');
+			redirect('user');
         }
     }
 

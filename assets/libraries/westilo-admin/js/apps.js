@@ -37,6 +37,24 @@
 				window.location = base_url('user/delete/' + id);
 			});
 		});
+
+		$('.turma-delete').on('click', function (e) {
+			e.preventDefault();
+			var id = $(this).attr('data-id');
+			swal({
+				title: "Apagar turma",
+				text: "Você tem certeza que deseja apagar esta turma?",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Sim, por favor!",
+				cancelButtonText: "Cancelar",
+				closeOnConfirm: false
+	
+			}, function () {
+				window.location = base_url('turma/delete/' + id);
+			});
+		});
 	
 		$('.service-delete').on('click', function (e) {
 			e.preventDefault();
@@ -458,17 +476,7 @@
     }
 
 
-    var SyntaxHighlight = $.SyntaxHighlighter;
-    if (SyntaxHighlight) {
-        SyntaxHighlight.init({
-            'baseUrl': 'http://ebge.test/assets/libraries/jquery-syntaxhighlighter/lib',
-            'prettifyBaseUrl': 'http://ebge.test/assets/libraries/jquery-syntaxhighlighter',
-            'theme': 'balupton',
-            'themes': ['balupton']
-        });
-    }
-
-
+ 
     // **---------------------
     // Initialize both sidebar
     // **---------------------
