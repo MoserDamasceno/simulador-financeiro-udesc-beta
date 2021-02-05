@@ -28,12 +28,14 @@
 	<div class="topbar-right pull-right">
 		<div class="clearfix">
 			<ul class="pull-right top-right-icons">
+				<?php if ($user): ?>
 				<li style="padding: 18px 15px;">
 					<b>Saldo monetário:</b> <?php echo converterMoeda(round($user->saldo, 2)) ?>
 				</li>
 				<li style="padding: 18px 15px;">
 					<b>Saldo em ativos:</b> <?php echo converterMoeda(round($user->saldo_ativos, 2)) ?>
 				</li>
+				<?php endif; ?>	
 			</ul>
 		</div>
 	</div>

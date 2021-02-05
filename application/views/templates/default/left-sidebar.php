@@ -42,13 +42,13 @@
 			</li>
 			<?php if ($this->session->userdata('user')->role_id == 1) : ?>
 				<li>
-					<a href="<?php echo base_url('cotation') ?>"><i class="zmdi zmdi-group-work"></i><span class="list-label">Atualizar cotações</span></a>
-				</li>
-				<li>
 					<a href="<?php echo base_url('turma') ?>"><i class="zmdi zmdi-accounts-alt"></i><span class="list-label">Turmas</span></a>
 				</li>
 				<li>
 					<a href="<?php echo base_url('user') ?>"><i class="zmdi zmdi-account"></i><span class="list-label">Alunos</span></a>
+				</li>
+				<li>
+					<a href="<?php echo base_url('cotation') ?>"><i class="zmdi zmdi-group-work"></i><span class="list-label">Atualizar cotações</span></a>
 				</li>
 			<?php endif ?>
 

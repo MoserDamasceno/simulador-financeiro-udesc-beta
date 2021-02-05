@@ -16,6 +16,10 @@ class Dashboard extends MY_Controller {
 		$this->data['title'] = 'Dashboard';
 		$this->data['user'] = $user = $this->session->userdata('user');
 
+		if (!$user) {
+			redirect('auth/logout');
+		}
+
 		adicionarCanonical(base_url() . 'dashboard');
 
 		$paginas = [
